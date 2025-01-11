@@ -4,3 +4,5 @@
 - git
 - pre-commit
 - poetry
+- docker
+- docker compose

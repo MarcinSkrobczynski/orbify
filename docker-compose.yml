@@ -1,0 +1,7 @@
+services:
+  projects:
+    build:
+      context: ./projects
+    restart: always
+    env_file:
+      - .env
