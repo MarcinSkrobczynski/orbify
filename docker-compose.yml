@@ -15,6 +15,16 @@ services:
       retries: 5
       start_period: 30s
       timeout: 10s
+  db-migrator:
+    build:
+      context: ./projects
+    command: ["bash", "db-migrator.sh"]
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
   projects:
     build:
       context: ./projects
@@ -22,8 +32,7 @@ services:
     env_file:
       - .env
     depends_on:
-      db:
-        condition: service_healthy
-        restart: true
+      db-migrator:
+        condition: service_completed_successfully
 volumes:
   db-data:

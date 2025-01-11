@@ -14,6 +14,9 @@ RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python
 COPY ./pyproject.toml ./poetry.lock* /app/
 RUN poetry install
 
+COPY ./alembic.ini ./db-migrator.sh /app/
+COPY ./alembic /app/alembic
+
 COPY ./orbify_projects /app/orbify_projects
 
 CMD ["fastapi", "run", "orbify_projects/main.py"]
