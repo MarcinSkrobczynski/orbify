@@ -1,4 +1,8 @@
 services:
+  db:
+    restart: no
+    ports:
+      - "5432:5432"
   projects:
     restart: no
     ports:

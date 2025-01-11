@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -21,6 +22,24 @@ class Settings(BaseSettings):
     api_prefix: str = "/api"
 
     cors_settings: CORSSettings = CORSSettings()
+
+    postgres_server: str = "db"
+    postgres_port: int = 5432
+    postgres_user: str = "postgres"
+    postgres_password: str = "postgres"
+    postgres_db: str = "postgres"
+
+    @property
+    def database_uri(self) -> str:
+        dsn = PostgresDsn.build(
+            scheme="postgresql+psycopg",
+            host=self.postgres_server,
+            port=self.postgres_port,
+            username=self.postgres_user,
+            password=self.postgres_password,
+            path=self.postgres_db or "",
+        )
+        return str(dsn)
 
 
 @lru_cache
