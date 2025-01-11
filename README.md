@@ -3,3 +3,4 @@
 ## Preconditions
 - git
 - pre-commit
+- poetry
