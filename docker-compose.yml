@@ -34,5 +34,11 @@ services:
     depends_on:
       db-migrator:
         condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/health"]
+      interval: 60s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
 volumes:
   db-data:

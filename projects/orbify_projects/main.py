@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
+from orbify_projects.api.main import api_router
 from orbify_projects.core.config import settings
 
 
@@ -21,6 +22,8 @@ def create_application() -> FastAPI:
         allow_headers=settings.cors_settings.allow_headers or ["*"],
         max_age=settings.cors_settings.max_age,
     )
+
+    application.include_router(api_router, prefix=settings.api_prefix)
 
     return application
 
