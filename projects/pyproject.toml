@@ -30,10 +30,19 @@ pytest-parametrize = "^1.3.0"
 pytest-mock = "^3.14.0"
 faker = "^33.3.1"
 poethepoet = "^0.32.1"
+mypy = "^1.14.1"
+types-pymysql = "^1.1.0.20241103"
+types-pyyaml = "^6.0.12.20241230"
+types-pygments = "^2.19.0.20250107"
+types-colorama = "^0.4.15.20240311"
+types-psycopg2 = "^2.9.21.20241019"
+types-setuptools = "^75.8.0.20250110"
+types-ujson = "^5.10.0.20240515"
 
 [tool.poe.tasks]
 tests = "pytest -vvv tests"
 coverage = "pytest -vvv tests --cov=orbify_projects --cov-report=term --cov-report=html --cov-fail-under=85"
+mypy = "mypy --install-types ."
 
 [tool.ruff]
 line-length = 120
@@ -60,6 +69,11 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = false
+
+[tool.mypy]
+strict = true
+exclude = ["alembic", "tests"]
+disallow_subclassing_any = false
 
 [tool.coverage.report]
 exclude_also = [

@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Annotated
+from typing import Annotated, Self
 
 from annotated_types import Len
 from pydantic import model_validator
@@ -16,7 +16,7 @@ class CreateOrUpdateProject(BaseModel):
     area_of_interest: Feature
 
     @model_validator(mode="after")
-    def validate_dates(self):
+    def validate_dates(self) -> Self:
         if self.start_date > self.end_date:
             raise ValueError("Start date must be before end date.")
         return self

@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Any
 
 from sqlalchemy import JSON
 from sqlalchemy.orm import Mapped, mapped_column
@@ -14,4 +15,4 @@ class Project(Base):
     description: Mapped[str | None] = mapped_column(nullable=True)
     start_date: Mapped[date] = mapped_column(nullable=False)
     end_date: Mapped[date] = mapped_column(nullable=False)
-    area_of_interest: Mapped[dict] = mapped_column(JSON, nullable=False)
+    area_of_interest: Mapped[dict[str, Any]] = mapped_column(JSON, nullable=False)
