@@ -1,5 +1,5 @@
 exclude: .idea|.git|.vscode
-default_stages: [commit, push]
+default_stages: [pre-commit, pre-push]
 repos:
   - repo: local
     hooks:
