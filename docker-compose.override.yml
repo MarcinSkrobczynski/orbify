@@ -7,6 +7,6 @@ services:
     restart: no
     ports:
       - "8000:8000"
-    command: ["fastapi", "run", "--reload", "orbify_projects/main.py"]
+    command: ["fastapi", "dev", "--reload", "orbify_projects/main.py"]
     volumes:
       - ./projects/:/app
