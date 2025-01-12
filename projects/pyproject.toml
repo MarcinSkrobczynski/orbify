@@ -20,6 +20,7 @@ pydantic-settings = "^2.7.1"
 alembic = "^1.14.0"
 sqlalchemy = "^2.0.37"
 psycopg = {extras = ["binary"], version = "^3.2.3"}
+geojson-pydantic = "^1.2.0"
 
 [tool.ruff]
 line-length = 120
