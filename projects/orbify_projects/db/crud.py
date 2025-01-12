@@ -20,6 +20,9 @@ class Crud(Generic[ModelType, CreateSchemaType, UpdateSchemaType, PartialUpdateS
     def create(self, obj_in: CreateSchemaType, *, session: SessionLocal) -> ModelType:
         json_data = jsonable_encoder(obj_in)
 
+        if session.bind.dialect.name == "sqlite":
+            json_data = obj_in.model_dump(exclude_unset=True)
+
         db_obj = self.model(**json_data)
         session.add(db_obj)
         session.commit()
